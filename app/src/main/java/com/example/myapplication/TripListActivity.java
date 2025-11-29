@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,10 +25,13 @@ public class TripListActivity extends AppCompatActivity implements TripAdapter.O
     private TripAdapter tripAdapter;
     private List<Trip> tripList;
     private List<Trip> filteredTripList;
-    private TextView emptyStateTextView;
+    private LinearLayout emptyStateTextView;
+
     private FloatingActionButton fabAddTrip;
     private SharedPreferencesManager preferencesManager;
     private SearchView searchView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
