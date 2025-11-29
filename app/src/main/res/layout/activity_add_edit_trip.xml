@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -14,12 +13,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/toolbar_gradient"
-            app:titleTextColor="@color/white" />
+            android:background="#3F51B5"
+            app:titleTextColor="@android:color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Scrollable Form -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,12 +30,10 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Destination Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Destination"
-                app:startIconDrawable="@drawable/ic_location"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -49,13 +45,12 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Start Date -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Start Date"
-                android:textColor="@color/text_primary"
+                android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -64,24 +59,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/date_picker_background"
-                android:drawableStart="@drawable/ic_calendar"
+                android:background="#E8EAF6"
+                android:drawableStart="@android:drawable/ic_menu_my_calendar"
                 android:drawablePadding="12dp"
-                android:drawableTint="@color/primary_color"
                 android:padding="16dp"
                 android:text="Select Date"
-                android:textColor="@color/text_secondary"
+                android:textColor="#757575"
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- End Date -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="End Date"
-                android:textColor="@color/text_primary"
+                android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -90,24 +83,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/date_picker_background"
-                android:drawableStart="@drawable/ic_calendar"
+                android:background="#E8EAF6"
+                android:drawableStart="@android:drawable/ic_menu_my_calendar"
                 android:drawablePadding="12dp"
-                android:drawableTint="@color/primary_color"
                 android:padding="16dp"
                 android:text="Select Date"
-                android:textColor="@color/text_secondary"
+                android:textColor="#757575"
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Budget Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Budget"
-                app:startIconDrawable="@drawable/ic_money"
                 app:prefixText="$ "
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -120,13 +110,12 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Trip Type (RadioButton) -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Trip Type"
-                android:textColor="@color/text_primary"
+                android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -168,13 +157,12 @@
 
             </RadioGroup>
 
-            <!-- Status (RadioButton) -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Status"
-                android:textColor="@color/text_primary"
+                android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -209,13 +197,12 @@
 
             </RadioGroup>
 
-            <!-- Priority (Spinner) -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Priority"
-                android:textColor="@color/text_primary"
+                android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -224,11 +211,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/spinner_background"
+                android:background="#C5CAE9"
                 android:padding="12dp"
                 android:minHeight="48dp" />
 
-            <!-- Accommodation (CheckBox) -->
             <CheckBox
                 android:id="@+id/cbAccommodation"
                 android:layout_width="match_parent"
@@ -236,9 +222,8 @@
                 android:layout_marginTop="16dp"
                 android:text="Accommodation Booked"
                 android:textSize="16sp"
-                android:textColor="@color/text_primary" />
+                android:textColor="#212121" />
 
-            <!-- Notifications (Switch) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -252,7 +237,7 @@
                     android:layout_weight="1"
                     android:text="Enable Notifications"
                     android:textSize="16sp"
-                    android:textColor="@color/text_primary" />
+                    android:textColor="#212121" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switchNotifications"
@@ -262,7 +247,6 @@
 
             </LinearLayout>
 
-            <!-- Notes Input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,16 +264,15 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Save Button -->
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/button_gradient"
+                android:background="#3F51B5"
                 android:text="Save Trip"
-                android:textColor="@color/white"
+                android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:padding="16dp" />
