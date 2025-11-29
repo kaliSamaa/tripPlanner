@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Destination (Main Heading) -->
+        <TextView
+            android:id="@+id/destinationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paris"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
+
+        <!-- Date Range -->
+        <TextView
+            android:id="@+id/dateRangeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/destinationTextView"
+            android:layout_marginTop="4dp"
+            android:text="12 May - 20 May"
+            android:textSize="14sp"
+            android:textColor="#555" />
+
+        <!-- Budget -->
+        <TextView
+            android:id="@+id/budgetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateRangeTextView"
+            android:layout_marginTop="6dp"
+            android:text="$1500"
+            android:textSize="14sp"
+            android:textColor="#444" />
+
+        <!-- Trip Type (Solo, Family, etc.) -->
+        <TextView
+            android:id="@+id/tripTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/budgetTextView"
+            android:layout_marginTop="4dp"
+            android:text="Adventure"
+            android:textSize="14sp"
+            android:textColor="#777" />
+
+        <!-- Status Badge -->
+        <TextView
+            android:id="@+id/statusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/badge_planned"
+            android:padding="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Planned"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Priority Badge -->
+        <TextView
+            android:id="@+id/priorityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/statusTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/badge_priority_medium"
+            android:padding="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Medium"
+            android:textColor="#fff"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Edit Button -->
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/priorityTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_edit"
+            android:contentDescription="Edit" />
+
+        <!-- Delete Button -->
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/priorityTextView"
+            android:layout_marginTop="12dp"
+            android:layout_toStartOf="@id/btnEdit"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Delete" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_gradient_background"
+    android:padding="24dp">
+
+    <!-- Logo ImageView -->
+
+    <!-- App Name -->
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="102dp"
+        android:layout_height="75dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/app_logo"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_travel_logo" />
+
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/app_name_full"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.05" />
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/taglineTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appNameTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/app_tagline"
+        android:textSize="16sp"
+        android:textColor="@color/white_transparent"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="0.1" />
+
+    <!-- Bottom decoration -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Loading indicator dots -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_indicator"
+                android:alpha="0.6" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_indicator"
+                android:alpha="0.8" />
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_indicator"
+                android:alpha="1.0" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/splash_loading"
+            android:textSize="14sp"
+            android:textColor="@color/white_transparent"
+            android:fontFamily="sans-serif" />
+    </LinearLayout>
+
+</RelativeLayout>
