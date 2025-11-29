@@ -21,27 +21,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Intent intent = new Intent(MainActivity.this, TripListActivity.class);
+        startActivity(intent);
 
-        // Initialize views
-        logoImageView = findViewById(R.id.logoImageView);
-        appNameTextView = findViewById(R.id.appNameTextView);
-        taglineTextView = findViewById(R.id.taglineTextView);
-
-
-        // Load and start animations
-        startAnimations();
-
-        // Navigate to TripListActivity after splash duration
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, TripListActivity.class);
-                startActivity(intent);
-                finish(); // Close splash screen
-            }
-        }, SPLASH_DURATION);
+        finish(); 
     }
+}
 
     private void startAnimations() {
         // Logo fade in and scale animation
