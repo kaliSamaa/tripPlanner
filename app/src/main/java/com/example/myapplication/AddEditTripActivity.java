@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -25,7 +24,6 @@ import java.util.Locale;
 
 public class AddEditTripActivity extends AppCompatActivity {
 
-    // UI Components
     private TextInputEditText etDestination, etBudget, etNotes;
     private TextView tvStartDate, tvEndDate;
     private RadioGroup rgTripType, rgStatus;
@@ -34,7 +32,7 @@ public class AddEditTripActivity extends AppCompatActivity {
     private SwitchCompat switchNotifications;
     private Button btnSave;
 
-    // Data
+
     private SharedPreferencesManager preferencesManager;
     private Trip currentTrip;
     private boolean isEditMode = false;
@@ -242,7 +240,7 @@ public class AddEditTripActivity extends AppCompatActivity {
             preferencesManager.updateTrip(currentTrip);
             Toast.makeText(this, "Trip updated!", Toast.LENGTH_SHORT).show();
         } else {
-            // Create new trip
+
             Trip newTrip = new Trip(destination, startDate, endDate, budget,
                     tripType, status, priority, accommodationBooked, notificationsEnabled, notes);
             preferencesManager.addTrip(newTrip);

@@ -13,8 +13,7 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".TripListActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyApplication" />
+            android:exported="false" />
         <activity
             android:name=".AddEditTripActivity"
             android:exported="false" />
