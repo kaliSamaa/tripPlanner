@@ -8,13 +8,13 @@ public class Trip implements Serializable {
     private String startDate;
     private String endDate;
     private String budget;
-    private String tripType; // Solo, Family, Business, Adventure
-    private String status; // Planned, Ongoing, Completed
-    private String priority; // Low, Medium, High
+    private String tripType;
+    private String status;
+    private String priority;
     private boolean accommodationBooked;
     private boolean notificationsEnabled;
     private String notes;
-    private long timestamp; // For sorting
+    private long timestamp;
 
     // Constructor
     public Trip() {

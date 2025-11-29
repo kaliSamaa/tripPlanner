@@ -32,50 +32,36 @@ public class AddEditTripActivity extends AppCompatActivity {
     private SwitchCompat switchNotifications;
     private Button btnSave;
 
-
     private SharedPreferencesManager preferencesManager;
     private Trip currentTrip;
     private boolean isEditMode = false;
 
-    // Date handling
-    private Calendar startCalendar = Calendar.getInstance();
-    private Calendar endCalendar = Calendar.getInstance();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+    private final Calendar startCalendar = Calendar.getInstance();
+    private final Calendar endCalendar = Calendar.getInstance();
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_trip);
 
-        // Setup Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Initialize views
         initializeViews();
-
-        // Initialize SharedPreferences
         preferencesManager = new SharedPreferencesManager(this);
 
-        // Check if edit mode (editing existing trip)
         if (getIntent().hasExtra("TRIP_ID")) {
             isEditMode = true;
             String tripId = getIntent().getStringExtra("TRIP_ID");
             currentTrip = preferencesManager.getTripById(tripId);
             loadTripData();
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle("Edit Trip");
-            }
+            if (getSupportActionBar() != null) getSupportActionBar().setTitle("Edit Trip");
         } else {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle("Add New Trip");
-            }
+            if (getSupportActionBar() != null) getSupportActionBar().setTitle("Add New Trip");
         }
 
-        // Setup listeners
         setupListeners();
     }
 
@@ -92,7 +78,6 @@ public class AddEditTripActivity extends AppCompatActivity {
         switchNotifications = findViewById(R.id.switchNotifications);
         btnSave = findViewById(R.id.btnSave);
 
-        // Setup priority spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.priority_levels, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,42 +85,27 @@ public class AddEditTripActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        // Start Date Picker
         tvStartDate.setOnClickListener(v -> showDatePicker(true));
-
-        // End Date Picker
         tvEndDate.setOnClickListener(v -> showDatePicker(false));
-
-        // Save Button
         btnSave.setOnClickListener(v -> saveTrip());
     }
 
-    // Show DatePicker dialog
     private void showDatePicker(boolean isStartDate) {
         Calendar calendar = isStartDate ? startCalendar : endCalendar;
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
+        DatePickerDialog dialog = new DatePickerDialog(
                 this,
                 (view, year, month, dayOfMonth) -> {
-                    calendar.set(Calendar.YEAR, year);
-                    calendar.set(Calendar.MONTH, month);
-                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-                    if (isStartDate) {
-                        tvStartDate.setText(dateFormat.format(calendar.getTime()));
-                    } else {
-                        tvEndDate.setText(dateFormat.format(calendar.getTime()));
-                    }
+                    calendar.set(year, month, dayOfMonth);
+                    if (isStartDate) tvStartDate.setText(dateFormat.format(calendar.getTime()));
+                    else tvEndDate.setText(dateFormat.format(calendar.getTime()));
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
         );
-
-        datePickerDialog.show();
+        dialog.show();
     }
 
-    // Load existing trip data (for edit mode)
     private void loadTripData() {
         if (currentTrip != null) {
             etDestination.setText(currentTrip.getDestination());
@@ -146,13 +116,9 @@ public class AddEditTripActivity extends AppCompatActivity {
             cbAccommodation.setChecked(currentTrip.isAccommodationBooked());
             switchNotifications.setChecked(currentTrip.isNotificationsEnabled());
 
-            // Set trip type radio button
             setRadioButton(rgTripType, currentTrip.getTripType());
-
-            // Set status radio button
             setRadioButton(rgStatus, currentTrip.getStatus());
 
-            // Set priority spinner
             String[] priorities = getResources().getStringArray(R.array.priority_levels);
             for (int i = 0; i < priorities.length; i++) {
                 if (priorities[i].equals(currentTrip.getPriority())) {
@@ -163,7 +129,6 @@ public class AddEditTripActivity extends AppCompatActivity {
         }
     }
 
-    // Helper to set radio button by text
     private void setRadioButton(RadioGroup radioGroup, String value) {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             RadioButton radioButton = (RadioButton) radioGroup.getChildAt(i);
@@ -174,58 +139,25 @@ public class AddEditTripActivity extends AppCompatActivity {
         }
     }
 
-    // Save or update trip
     private void saveTrip() {
-        // Get values from inputs
         String destination = etDestination.getText().toString().trim();
         String startDate = tvStartDate.getText().toString();
         String endDate = tvEndDate.getText().toString();
         String budget = etBudget.getText().toString().trim();
         String notes = etNotes.getText().toString().trim();
 
-        // Validate inputs
-        if (destination.isEmpty()) {
-            etDestination.setError("Please enter destination");
-            etDestination.requestFocus();
-            return;
-        }
+        if (destination.isEmpty()) { etDestination.setError("Please enter destination"); etDestination.requestFocus(); return; }
+        if (startDate.equals("Select Date")) { Toast.makeText(this, "Please select start date", Toast.LENGTH_SHORT).show(); return; }
+        if (endDate.equals("Select Date")) { Toast.makeText(this, "Please select end date", Toast.LENGTH_SHORT).show(); return; }
+        if (budget.isEmpty()) { etBudget.setError("Please enter budget"); etBudget.requestFocus(); return; }
 
-        if (startDate.equals("Select Date")) {
-            Toast.makeText(this, "Please select start date", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (endDate.equals("Select Date")) {
-            Toast.makeText(this, "Please select end date", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (budget.isEmpty()) {
-            etBudget.setError("Please enter budget");
-            etBudget.requestFocus();
-            return;
-        }
-
-        // Get selected trip type
-        int selectedTripTypeId = rgTripType.getCheckedRadioButtonId();
-        RadioButton selectedTripType = findViewById(selectedTripTypeId);
-        String tripType = selectedTripType.getText().toString();
-
-        // Get selected status
-        int selectedStatusId = rgStatus.getCheckedRadioButtonId();
-        RadioButton selectedStatus = findViewById(selectedStatusId);
-        String status = selectedStatus.getText().toString();
-
-        // Get priority
+        String tripType = ((RadioButton) findViewById(rgTripType.getCheckedRadioButtonId())).getText().toString();
+        String status = ((RadioButton) findViewById(rgStatus.getCheckedRadioButtonId())).getText().toString();
         String priority = spinnerPriority.getSelectedItem().toString();
-
-        // Get checkbox and switch values
         boolean accommodationBooked = cbAccommodation.isChecked();
         boolean notificationsEnabled = switchNotifications.isChecked();
 
-        // Create or update trip
         if (isEditMode && currentTrip != null) {
-            // Update existing trip
             currentTrip.setDestination(destination);
             currentTrip.setStartDate(startDate);
             currentTrip.setEndDate(endDate);
@@ -236,26 +168,21 @@ public class AddEditTripActivity extends AppCompatActivity {
             currentTrip.setAccommodationBooked(accommodationBooked);
             currentTrip.setNotificationsEnabled(notificationsEnabled);
             currentTrip.setNotes(notes);
-
             preferencesManager.updateTrip(currentTrip);
             Toast.makeText(this, "Trip updated!", Toast.LENGTH_SHORT).show();
         } else {
-
             Trip newTrip = new Trip(destination, startDate, endDate, budget,
                     tripType, status, priority, accommodationBooked, notificationsEnabled, notes);
             preferencesManager.addTrip(newTrip);
             Toast.makeText(this, "Trip added!", Toast.LENGTH_SHORT).show();
         }
 
-        finish(); // Close activity and return to list
+        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
+        if (item.getItemId() == android.R.id.home) { finish(); return true; }
         return super.onOptionsItemSelected(item);
     }
 }
